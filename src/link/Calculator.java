@@ -11,8 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+// import java.io.FileWriter;
+// import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
@@ -26,7 +26,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.SystemColor;
-import javax.swing.JLabel;
+// import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -37,8 +37,8 @@ public class Calculator extends JFrame{
 	private JPanel contentPane;
 	private JTextField displayField;
 	private JButton btnC;
-	private JButton btnF;
-	private JButton btnM;
+	private JButton btnLeftBracket;
+	private JButton btnRightBracket;
 	private JButton btnB;
 	private JButton btnEqual;
 	private JButton btn7;
@@ -57,11 +57,11 @@ public class Calculator extends JFrame{
 	private JButton btnPoint;
 	private JButton btnMinus;
 	private JButton btnPlusOrMinus;
-	private JTextField postfixDisplayField;
+	// private JTextField postfixDisplayField;
 	private JMenuBar menuBar;
 	private JMenu mnHelp;
 	private JMenuItem mntmViewUserManual;
-	private JLabel lblPostfixExpression;
+	// private JLabel lblPostfixExpression;
 
 	public Calculator() {
 		//Design starts here
@@ -93,22 +93,22 @@ public class Calculator extends JFrame{
 		btn7.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		btn7.setPreferredSize(new Dimension(65, 23));
 		
-		lblPostfixExpression = new JLabel("Postfix Expression");
-		lblPostfixExpression.setForeground(Color.WHITE);
-		contentPane.add(lblPostfixExpression, "cell 0 3 5 1,alignx right");
+		// lblPostfixExpression = new JLabel("Postfix Expression");
+		// lblPostfixExpression.setForeground(Color.WHITE);
+		// contentPane.add(lblPostfixExpression, "cell 0 3 5 1,alignx right");
 		
-		postfixDisplayField = new JTextField();
-		postfixDisplayField.setPreferredSize(new Dimension(70, 40));
-		postfixDisplayField.setOpaque(true);
-		postfixDisplayField.setHorizontalAlignment(SwingConstants.RIGHT);
-		postfixDisplayField.setForeground(new Color(255, 255, 224));
-		postfixDisplayField.setFont(new Font("Roboto", Font.BOLD, 20));
-		postfixDisplayField.setEnabled(false);
-		postfixDisplayField.setEditable(false);
-		postfixDisplayField.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		postfixDisplayField.setColumns(10);
-		postfixDisplayField.setBackground(new Color(47, 79, 79));
-		contentPane.add(postfixDisplayField, "cell 0 5 5 1,growx");
+		// postfixDisplayField = new JTextField();
+		// postfixDisplayField.setPreferredSize(new Dimension(70, 40));
+		// postfixDisplayField.setOpaque(true);
+		// postfixDisplayField.setHorizontalAlignment(SwingConstants.RIGHT);
+		// postfixDisplayField.setForeground(new Color(255, 255, 224));
+		// postfixDisplayField.setFont(new Font("Roboto", Font.BOLD, 20));
+		// postfixDisplayField.setEnabled(false);
+		// postfixDisplayField.setEditable(false);
+		// postfixDisplayField.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		// postfixDisplayField.setColumns(10);
+		// postfixDisplayField.setBackground(new Color(47, 79, 79));
+		// contentPane.add(postfixDisplayField, "cell 0 5 5 1,growx");
 		
 		displayField = new JTextField();
 		displayField.setEnabled(false);
@@ -131,25 +131,23 @@ public class Calculator extends JFrame{
 		btnC.setForeground(new Color(255, 255, 255));
 		btnC.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		btnC.setPreferredSize(new Dimension(65, 28));
-		contentPane.add(btnC, "cell 0 8");
+		contentPane.add(btnC, "cell 1 8");
 		
-		btnF = new JButton("F");
-		btnF.setFocusable(false);
-		btnF.setToolTipText("Store to File");
-		btnF.setBackground(SystemColor.activeCaption);
-		btnF.setForeground(new Color(255, 255, 255));
-		btnF.setFont(new Font("Roboto Black", Font.PLAIN, 13));
-		btnF.setPreferredSize(new Dimension(65, 28));
-		contentPane.add(btnF, "cell 1 8");
+		btnLeftBracket = new JButton("(");
+		btnLeftBracket.setFocusable(false);
+		btnLeftBracket.setBackground(SystemColor.activeCaption);
+		btnLeftBracket.setForeground(new Color(255, 255, 255));
+		btnLeftBracket.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		btnLeftBracket.setPreferredSize(new Dimension(65, 28));
+		contentPane.add(btnLeftBracket, "cell 2 8");
 		
-		btnM = new JButton("M");
-		btnM.setFocusable(false);
-		btnM.setToolTipText("Memory");
-		btnM.setBackground(SystemColor.activeCaption);
-		btnM.setForeground(new Color(255, 255, 255));
-		btnM.setFont(new Font("Roboto Black", Font.PLAIN, 13));
-		btnM.setPreferredSize(new Dimension(65, 28));
-		contentPane.add(btnM, "cell 2 8");
+		btnRightBracket = new JButton(")");
+		btnRightBracket.setFocusable(false);
+		btnRightBracket.setBackground(SystemColor.activeCaption);
+		btnRightBracket.setForeground(new Color(255, 255, 255));
+		btnRightBracket.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		btnRightBracket.setPreferredSize(new Dimension(65, 28));
+		contentPane.add(btnRightBracket, "cell 3 8");
 		
 		btnB = new JButton("B");
 		btnB.setFocusable(false);
@@ -157,7 +155,7 @@ public class Calculator extends JFrame{
 		btnB.setBackground(SystemColor.activeCaption);
 		btnB.setForeground(new Color(255, 255, 255));
 		btnB.setFont(new Font("Roboto Black", Font.PLAIN, 13));
-		contentPane.add(btnB, "cell 3 8");
+		contentPane.add(btnB, "cell 0 8");
 		
 		btnPlusOrMinus = new JButton("+/-");
 		btnPlusOrMinus.setFocusable(false);
@@ -340,11 +338,11 @@ public class Calculator extends JFrame{
 					case KeyEvent.VK_C:
 						btnC.doClick();
 						break;
-					case KeyEvent.VK_F:
-						btnF.doClick();
+					case KeyEvent.VK_LEFT_PARENTHESIS:
+						btnLeftBracket.doClick();
 						break;
-					case KeyEvent.VK_M:
-						btnM.doClick();
+					case KeyEvent.VK_RIGHT_PARENTHESIS:
+						btnRightBracket.doClick();
 						break;
 					case KeyEvent.VK_BACK_SPACE: case KeyEvent.VK_B:
 						btnB.doClick();
@@ -377,6 +375,12 @@ public class Calculator extends JFrame{
 				
 				if(e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_EQUALS)
 					btnPlus.doClick();
+
+				if(e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_9)
+					btnLeftBracket.doClick();
+
+				if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_0)
+					btnRightBracket.doClick();
 				
 			}
 
@@ -408,7 +412,9 @@ public class Calculator extends JFrame{
 			for(Component comp : getContentPane().getComponents()){//Grab all components in frame
 				if(comp instanceof JButton){//filter only buttons
 					if(event.getSource() == ((JButton) comp)){//check source for buttons being added to the expression
-						if(isNumeric(((JButton) comp).getText()) || isSign(((JButton) comp).getText()) || ((JButton) comp).getText() == "."){
+						if(isNumeric(((JButton) comp).getText()) || 
+							isSign(((JButton) comp).getText()) || ((JButton) comp).getText() == "." ||
+							isBracket(((JButton) comp).getText())){
 							reset();
 							addToExpression(expression, ((JButton) comp).getText());
 							break;
@@ -435,20 +441,20 @@ public class Calculator extends JFrame{
 			if(event.getSource() == btnC){
 				reset();
 				expression = new StringBuilder("");
-				postfixDisplayField.setText("");
+				// postfixDisplayField.setText("");
 				pointMem.destroy();
 				negativeMem.destroy();
 			}
 
 /* 5. */	//FILE STORAGE BUTTON CODE
-			if(event.getSource() == btnF){
-				storeToFile(expression.toString());
-			}
+			// if(event.getSource() == btnF){
+			// 	storeToFile(expression.toString());
+			// }
 			
 /* 6. */	//MEMORY BUTTON CODE
-			if(event.getSource() == btnM){
-				retrieveFromMemory();
-			}
+			// if(event.getSource() == btnM){
+			// 	retrieveFromMemory();
+			// }
 			
 /* 7. */	//USER MANUAL
 			if(event.getSource() == mntmViewUserManual){
@@ -463,7 +469,7 @@ public class Calculator extends JFrame{
 			if(expressionEvaluated){
 				expression = new StringBuilder("");
 				expressionQueue.destroy();
-				postfixDisplayField.setText("");
+				// postfixDisplayField.setText("");
 				pointMem.destroy();
 				negativeMem.destroy();
 				expressionEvaluated = false;
@@ -474,9 +480,17 @@ public class Calculator extends JFrame{
 			if(exp != null && exp.length() > 0){
 				char lastAdded = exp.charAt(exp.length() - 1);
 				boolean negative = !(negativeMem.getTop() == null || negativeMem.getTop().getData().getValue() == false);
-				//if appending string is a sign and the last thing add to the expression is not a sign
-				//and the appending string is not a dot
-				if(isSign(what) && !isSign(String.format("%c", lastAdded)) && !what.equals(".")){//signs get added here
+				if (isBracket(what)) {
+					if (lastAdded == '.')
+						exp.append("0" + what);
+					else
+						exp.append(what);
+					pointMem.push(new Flag(false));
+					negativeMem.push(new Flag(false));
+					// if appending string is a sign and the last thing 
+					// added to the expression is not a sign
+					// and the appending string is not a dot
+				} else if(isSign(what) && !isSign(String.format("%c", lastAdded)) && !what.equals(".")){//signs get added here
 					if(lastAdded == '.')
 						exp.append("0"+what);
 					else
@@ -486,6 +500,7 @@ public class Calculator extends JFrame{
 				}else if(!what.equals(".") && !isSign(what) && !negative && isNumeric(what)){//Numbers get added here
 					exp.append(what);
 				}
+
 				
 				if(what.equals(".") && (pointMem.getTop() == null || pointMem.getTop().getData().getValue() == false)){//Point gets added here
 					if(!String.format("%c", lastAdded).equals(".")){//last char added is not a dot
@@ -502,13 +517,34 @@ public class Calculator extends JFrame{
 				exp.append(what);
 			}else if(what.equals(".")){
 				exp.append("0"+what);
+				// This helps the calculator to remember
+				// a period was typed already.
 				pointMem.push(new Flag(true));
+			}else if(isBracket(what)) {
+				exp.append(what);
 			}
 //			if(pointMem.getTop() != null && negativeMem.getTop() != null)
 //				System.out.println("pointMem: " + pointMem.getTop().getData().getValue()+" negMem: "+ negativeMem.getTop().getData().getValue());
 		}
+
+		public boolean postValidate(StringBuilder exp) {
+			String regex1 = "(\\d\\(|\\)\\d)$";
+
+			Pattern pat1 = Pattern.compile(regex1);
+			Matcher mat1 = pat1.matcher(expression.toString());
+			
+			if(mat1.groupCount() > 0){
+				return false;
+			}
+
+			long lfCount = exp.chars().filter(ch -> ch == '(').count();
+			long rgCount = exp.chars().filter(ch -> ch == ')').count();
+
+			return lfCount == rgCount;
+		}
+
 		public void negate(){
-			reset();	
+			reset();		
 			String regex1 = "([\\d\\.]+)*?$";//match number at the end of expression
 			String regex2 = "\\(\\-([\\.0-9]+?)\\)$";//match brackets with minus sign
 			Pattern pat1 = Pattern.compile(regex1); 
@@ -568,65 +604,68 @@ public class Calculator extends JFrame{
 			
 		}
 		public void calculate(){
-			if(expression.length() > 0){
-				String regex = "(\\([\\-][\\d\\.]+\\))+?";
-				Matcher mat = Pattern.compile(regex).matcher(expression.toString());
-				//Convert negative numbers to (0 - num)
-				while(mat.find() && mat.group(0).length() > 0){
-					for(int i = 0; i < mat.groupCount(); i++){							
-						expression.replace(	
-							expression.indexOf(mat.group(i)),
-							expression.indexOf(mat.group(i)) + mat.group(i).length(),
-							mat.group(i).replaceAll("[\\(]", "(0")
-						);
+			if(postValidate(expression)) {
+				if (expression.length() > 0) {
+					String regex = "(\\([\\-][\\d\\.]+\\))+?";
+					Matcher mat = Pattern.compile(regex).matcher(expression.toString());
+					// Convert negative numbers to (0 - num)
+					while (mat.find() && mat.group(0).length() > 0) {
+						for (int i = 0; i < mat.groupCount(); i++) {
+							expression.replace(expression.indexOf(mat.group(i)),
+									expression.indexOf(mat.group(i)) + mat.group(i).length(),
+									mat.group(i).replaceAll("[\\(]", "(0"));
+						}
 					}
+					// Remove the signs from the end of an expression.
+					if (isSign(String.valueOf(expression.charAt(expression.length() - 1)))) {
+						expression.deleteCharAt(expression.length() - 1);
+					}
+
+					Convert cvtr = new Convert();
+					ExpressionTree expt = new ExpressionTree();
+					expressionQueue = cvtr.convertToPostfixQueue(expression);
+					// postfixDisplayField.setText(expressionQueue.display().toString());
+					double ans = expt.calculateExpression(expressionQueue);
+
+					expression = new StringBuilder(String.valueOf(ans));
+					Matcher m = Pattern.compile("\\.0$").matcher(expression.toString());
+					if (m.find() && m.group(0).length() > 0) {
+						expression.replace(expression.length() - 2, expression.length(), "");
+					}
+					expressionEvaluated = true;
+
 				}
-				//Remove the signs from the end of an expression.
-				if(isSign(String.valueOf(expression.charAt(expression.length() - 1)))){
-					expression.deleteCharAt(expression.length() - 1);
-				}
-				
-				Convert cvtr = new Convert();
-				ExpressionTree expt = new ExpressionTree();
-				expressionQueue = cvtr.convertToPostfixQueue(expression);
-				postfixDisplayField.setText(expressionQueue.display().toString());
-				double ans = expt.calculateExpression(expressionQueue);
-				
-				expression = new StringBuilder(String.valueOf(ans));
-				Matcher m = Pattern.compile("\\.0$").matcher(expression.toString());
-				if(m.find() && m.group(0).length() > 0){
-					expression.replace(expression.length() - 2, expression.length(), "");
-				}
-				expressionEvaluated = true;
-				
+			} else {
+				JOptionPane.showMessageDialog(null, "Invalid expression");
+				expressionEvaluated = false;
 			}
 		}
-		public String storeToFile(String info){
-			FileWriter tofile = null;
+		// public String storeToFile(String info){
+		// 	FileWriter tofile = null;
 
-			try{
-				if(info.length() > 0){
-					tofile = new FileWriter ("Storage.txt", true);
-					tofile.append(info+"\r\n");
-				}
-			}catch (IOException e){
-				e.printStackTrace();
-			}finally{
-				try{
-					tofile.close();
-				}catch (Exception e){
-					JOptionPane.showMessageDialog(null, "Please type an expression.");
-				}
-			}
+		// 	try{
+		// 		if(info.length() > 0){
+		// 			tofile = new FileWriter ("Storage.txt", true);
+		// 			tofile.append(info+"\r\n");
+		// 		}
+		// 	}catch (IOException e){
+		// 		e.printStackTrace();
+		// 	}finally{
+		// 		try{
+		// 			tofile.close();
+		// 		}catch (Exception e){
+		// 			JOptionPane.showMessageDialog(null, "Please type an expression.");
+		// 		}
+		// 	}
 				
-			return info;
+		// 	return info;
 
-		}
+		// }
 		
-		public void retrieveFromMemory(){
-			if(expression.length() >= 1)
-				addToExpression(expression, String.valueOf(expression.charAt(expression.length() - 1)));
-		}
+		// public void retrieveFromMemory(){
+		// 	if(expression.length() >= 1)
+		// 		addToExpression(expression, String.valueOf(expression.charAt(expression.length() - 1)));
+		// }
 		public void openUserManual(){
 			try{
 				if((new File("User-Manual.chm")).exists()){
@@ -647,5 +686,8 @@ public class Calculator extends JFrame{
 			return Character.isDigit(n.toCharArray()[0]);
 		}
 		
+		public boolean isBracket(String s) {
+			return s.equals("(") || s.equals(")");
+		}
 	}
 }
